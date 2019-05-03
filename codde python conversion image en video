@@ -1,0 +1,15 @@
+import os
+import picamera
+import time
+camera = picamera.PiCamera()
+#Retourner image : Enlever les deux hashtag suivants
+#camera.hflip = True
+#camera.vflip = True
+dureeVideo = 5
+nomVideo = time.strftime("%d.%m.%Y-%Hh%Mm%Ss")
+camera.start_recording(nomVideo+".h264")
+print("REC...")
+time.sleep(dureeVideo)
+camera.stop_recording()
+commande = "MP4Box -add "+nomVideo+".h264 " + nomVideo+".mp4"
+os.system(commande)
